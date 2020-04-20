@@ -1,10 +1,10 @@
-﻿@model IEnumerable<WebApplication3.Baza.Book>
+﻿@model IEnumerable<Projekt_MySql_ASP.NET.Models.RentalList>
 
 @{
-    ViewData["Title"] = "BookView";
+    ViewData["Title"] = "RentalView";
 }
 
-<h1>BookView</h1>
+<h1>RentalView</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -13,22 +13,19 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.BooksID)
+                @Html.DisplayNameFor(model => model.RentalID)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Available)
+                @Html.DisplayNameFor(model => model.Date)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayNameFor(model => model.ReturnDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Author)
+                @Html.DisplayNameFor(model => model.ReaderID)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Genre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Edition)
+                @Html.DisplayNameFor(model => model.BookID)
             </th>
             <th></th>
         </tr>
@@ -37,22 +34,19 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.BooksID)
+                @Html.DisplayFor(modelItem => item.RentalID)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Available)
+                @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Title)
+                @Html.DisplayFor(modelItem => item.ReturnDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Author)
+                @Html.DisplayFor(modelItem => item.ReaderID)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Genre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Edition)
+                @Html.DisplayFor(modelItem => item.BookID)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

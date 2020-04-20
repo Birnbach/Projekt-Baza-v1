@@ -33,8 +33,23 @@ namespace WebApplication3.Controllers
         }
         public IActionResult BookView()
         {
-            ConnectionDB context = HttpContext.RequestServices.GetService(typeof(WebApplication3.Baza.ConnectionDB)) as ConnectionDB;
-            return View(context.GetAllBooks());
+            ConnectionDB conn = HttpContext.RequestServices.GetService(typeof(WebApplication3.Baza.ConnectionDB)) as ConnectionDB;
+            return View(conn.GetAllBooks());
+        }
+        public IActionResult AdminView()
+        {
+            ConnectionDB conn = HttpContext.RequestServices.GetService(typeof(WebApplication3.Baza.ConnectionDB)) as ConnectionDB;
+            return View(conn.GetAllAdmins());
+        }
+        public IActionResult ReaderView()
+        {
+            ConnectionDB conn = HttpContext.RequestServices.GetService(typeof(WebApplication3.Baza.ConnectionDB)) as ConnectionDB;
+            return View(conn.GetAllReaders());
+        }
+        public IActionResult RentalView()
+        {
+            ConnectionDB conn = HttpContext.RequestServices.GetService(typeof(WebApplication3.Baza.ConnectionDB)) as ConnectionDB;
+            return View(conn.GetAllRentals());
         }
     }
 }

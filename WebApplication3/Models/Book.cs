@@ -5,13 +5,14 @@ using System.Threading.Tasks;
 
 namespace WebApplication3.Baza
 {
-    public class Books
+    public class Book
     {
         private ConnectionDB dbcon;
-        public int idBooks { get; set; }
-        public int idReader { get; set; }
+        public int BooksID { get; set; }
+        public int Available { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
+        public string Genre { get; set; }
         public int Edition { get; set; }
     }
 }

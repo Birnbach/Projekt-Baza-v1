@@ -1,10 +1,10 @@
-﻿@model IEnumerable<WebApplication3.Baza.Books>
+﻿@model IEnumerable<Projekt_MySql_ASP.NET.Models.Reader>
 
 @{
-    ViewData["Title"] = "BookView";
+    ViewData["Title"] = "ReaderView";
 }
 
-<h1>BookView</h1>
+<h1>ReaderView</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -13,19 +13,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.idBooks)
+                @Html.DisplayNameFor(model => model.ReaderID)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.idReader)
+                @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayNameFor(model => model.Email)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Author)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Edition)
+                @Html.DisplayNameFor(model => model.PhoneNum)
             </th>
             <th></th>
         </tr>
@@ -34,19 +31,16 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.idBooks)
+                @Html.DisplayFor(modelItem => item.ReaderID)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.idReader)
+                @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Title)
+                @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Author)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Edition)
+                @Html.DisplayFor(modelItem => item.PhoneNum)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
