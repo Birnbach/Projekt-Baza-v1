@@ -4,7 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using MySql.Data;
-using Projekt_MySql_ASP.NET.Models;
+using WebApplication3.Models;
+
 
 namespace WebApplication3.Baza
 {
@@ -28,7 +29,7 @@ namespace WebApplication3.Baza
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand("select * from books where BooksID < 10", conn);
+                MySqlCommand cmd = new MySqlCommand("select * from books where BooksID < 50", conn);
 
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -111,7 +112,7 @@ namespace WebApplication3.Baza
                 {
                     while (reader.Read())
                     {
-                        list.Add(new RentalList()
+                         list.Add(new RentalList()
                         {
                             RentalID = Convert.ToInt32(reader["RentalID"]),
                             Date = reader["Date"].ToString(),
@@ -124,6 +125,29 @@ namespace WebApplication3.Baza
             }
             return list;
         }
+        public void EditBook(int BooksID, string Title, string Author, int Edition, string Genre, int Available)
+        {
+            
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                // MySqlCommand cmd = new MySqlCommand("select * from books where BooksID < 2 ", conn);
+                using (MySqlCommand cmd = new MySqlCommand("UPDATE new_schema.books SET Title = @Title, Author = @Author, Edition = @Edition, Genre = @Genre, Available = @Available WHERE BooksID = @BooksID", conn))
+                {
+                    cmd.Parameters.AddWithValue("@BooksID", BooksID);
+                    cmd.Parameters.AddWithValue("@Title", Title);
+                    cmd.Parameters.AddWithValue("@Author", Author);
+                    cmd.Parameters.AddWithValue("@Edition", Edition);
+                    cmd.Parameters.AddWithValue("@Genre", Genre);
+                    cmd.Parameters.AddWithValue("@Available", Available);
+
+                    cmd.Connection = conn;
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
+        }
+   
     }
 
 }

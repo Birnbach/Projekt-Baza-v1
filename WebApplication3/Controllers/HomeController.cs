@@ -51,5 +51,19 @@ namespace WebApplication3.Controllers
             ConnectionDB conn = HttpContext.RequestServices.GetService(typeof(WebApplication3.Baza.ConnectionDB)) as ConnectionDB;
             return View(conn.GetAllRentals());
         }
+        public IActionResult Edit(int Id)
+        {
+            Book book = new Book();
+            book.BooksID = Id;
+            return View(book); 
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Book book)
+        {
+            ConnectionDB conn = HttpContext.RequestServices.GetService(typeof(WebApplication3.Baza.ConnectionDB)) as ConnectionDB;
+            conn.EditBook(book.BooksID, book.Title, book.Author,book.Edition,book.Genre,book.Available);
+            return RedirectToAction("BookView"); 
+        }
     }
 }

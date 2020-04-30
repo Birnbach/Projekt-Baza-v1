@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Projekt_MySql_ASP.NET.Models
+namespace WebApplication3.Models
 {
     public class Administration
     {
