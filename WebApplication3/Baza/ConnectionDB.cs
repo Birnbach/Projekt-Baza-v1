@@ -159,7 +159,28 @@ namespace WebApplication3.Baza
                 }
             }
         }
-   
+        public void CreateBook(int BooksID, string Title, string Author, int Edition, string Genre, int Available)
+        {
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+
+                using (MySqlCommand cmd = new MySqlCommand("INSERT INTO new_schema.books (BooksID, Title, Author, Edition, Genre, Available)  VALUES (@BooksID, @Title, @Author, @Edition, @Genre, @Available)", conn))
+                {
+                    cmd.Parameters.AddWithValue("@BooksID", BooksID);
+                    cmd.Parameters.AddWithValue("@Title", Title);
+                    cmd.Parameters.AddWithValue("@Author", Author);
+                    cmd.Parameters.AddWithValue("@Edition", Edition);
+                    cmd.Parameters.AddWithValue("@Genre", Genre);
+                    cmd.Parameters.AddWithValue("@Available", Available);
+
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
+        }
+
     }
 
 }

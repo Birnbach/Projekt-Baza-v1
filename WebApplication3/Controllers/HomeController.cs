@@ -90,6 +90,18 @@ namespace WebApplication3.Controllers
 
             return RedirectToAction("BookView");
         }
+        public ActionResult Create()
+        {
+            return View();
+        }
 
+        [HttpPost]
+        public ActionResult Create(Book book)
+        {
+            ConnectionDB conn = HttpContext.RequestServices.GetService(typeof(WebApplication3.Baza.ConnectionDB)) as ConnectionDB;
+            conn.CreateBook(book.BooksID, book.Title, book.Author, book.Edition, book.Genre, book.Available);
+            return RedirectToAction("BookView");
+            
+        }
     }
 }
