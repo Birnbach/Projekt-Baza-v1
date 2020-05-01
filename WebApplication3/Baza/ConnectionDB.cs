@@ -131,7 +131,7 @@ namespace WebApplication3.Baza
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                // MySqlCommand cmd = new MySqlCommand("select * from books where BooksID < 2 ", conn);
+
                 using (MySqlCommand cmd = new MySqlCommand("UPDATE new_schema.books SET Title = @Title, Author = @Author, Edition = @Edition, Genre = @Genre, Available = @Available WHERE BooksID = @BooksID", conn))
                 {
                     cmd.Parameters.AddWithValue("@BooksID", BooksID);
@@ -141,7 +141,19 @@ namespace WebApplication3.Baza
                     cmd.Parameters.AddWithValue("@Genre", Genre);
                     cmd.Parameters.AddWithValue("@Available", Available);
 
-                    cmd.Connection = conn;
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
+        }
+        public void DeleteBook(int BooksID)
+        {
+            using(MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                using (MySqlCommand cmd = new MySqlCommand("DELETE FROM new_schema.books WHERE BooksID = @BooksID",conn))
+                {
+                    cmd.Parameters.AddWithValue("@BooksID", BooksID);
                     cmd.ExecuteNonQuery();
                     conn.Close();
                 }
